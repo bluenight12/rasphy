@@ -29,6 +29,7 @@ int main(){
     pinMode(SW1, INPUT);
     pinMode(SW2, INPUT);
     pinMode(SW3, INPUT);
+    pinMode(SW4, INPUT);
 
     pinMode(BZR, PWM_OUTPUT);
 
@@ -45,13 +46,15 @@ int main(){
         switch(n){
             case 0:
                 digitalWrite(LED_RED, 1);
+                pwmSetRange(1000000/DO);
                 pwmWrite(BZR, 1000000/DO/2);
                 delay(500);
-                pwmWrite(BZR, 0);                
+                pwmWrite(BZR, 0);       
                 digitalWrite(LED_RED, 0);
                 break;
             case 1:
-                digitalWrite(LED_GREEN, 1);
+                digitalWrite(LED_GREEN, 1);                
+                pwmSetRange(1000000/RE);
                 pwmWrite(BZR, 1000000/RE/2);
                 delay(500);
                 pwmWrite(BZR, 0);                
@@ -59,6 +62,7 @@ int main(){
                 break;
             case 2:
                 digitalWrite(LED_BLUE, 1);
+                pwmSetRange(1000000/MI);
                 pwmWrite(BZR, 1000000/MI/2);
                 delay(500);
                 pwmWrite(BZR, 0);                
@@ -70,10 +74,15 @@ int main(){
     }
     int answer[5];
     int count = 0;
+    int before_SW1 = 1;
+    int before_SW2 = 1;
+    int before_SW3 = 1;
     while(count < 5){
         if(digitalRead(SW1) == 0) answer[count++] = 0;
         if(digitalRead(SW2) == 0) answer[count++] = 1;
         if(digitalRead(SW3) == 0) answer[count++] = 2;
+        if(digitalRead(SW4) == 0) break;
+        delay(100);
     }
     int ed = 0;
     for(int i = 0;i<5;i++){

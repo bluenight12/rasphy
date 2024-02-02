@@ -17,9 +17,9 @@
 #define LA 440.00
 #define SI 493.88
 //박자
-#define T8	150
-#define T16	75
-#define T4	300
+#define T8	300
+#define T16	150
+#define T4	600
 //LED 핀
 #define LED_RED 7
 #define LED_GREEN 21
@@ -71,8 +71,8 @@ int marioPlay(int n){
         if(mario[i] == 0) {
             pwmWrite(BZR, mario[i]);
         }else{
-		    pwmSetRange(1000000/mario[i]);
-            pwmWrite(BZR, 1000000/mario[i]/2);
+	        pwmSetRange(1000000/mario[i]);
+            pwmWrite(BZR, 1000000/mario[i]/5);
         }
 		delay(delays_m[i] - 20);        
         pwmWrite(BZR, 0);
@@ -94,7 +94,7 @@ int airPlay(int n){
             pwmWrite(BZR, airplane[i]);
         }else{
 		    pwmSetRange(1000000/airplane[i]);
-            pwmWrite(BZR, 1000000/airplane[i]/2);
+            pwmWrite(BZR, 1000000/airplane[i]/20);
         }
 		delay(delays_a[i] - 20);        
         pwmWrite(BZR, 0);
@@ -116,7 +116,7 @@ int rabbitPlay(int n){
             pwmWrite(BZR, rabbit[i]);
         }else{
 		    pwmSetRange(1000000/rabbit[i]);
-            pwmWrite(BZR, 1000000/rabbit[i]/2);
+            pwmWrite(BZR, 1000000/rabbit[i]/20);
         }
 		delay(delays_b[i] - 20);        
         pwmWrite(BZR, 0);

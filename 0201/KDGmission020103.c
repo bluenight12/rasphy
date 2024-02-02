@@ -49,6 +49,7 @@ int check_LED(int led, float k){
 }
 int main(){
     wiringPiSetup();
+    
     pinMode(LED_RED, OUTPUT);
     pinMode(LED_GREEN, OUTPUT);
     pinMode(LED_BLUE, OUTPUT);
